@@ -2,9 +2,10 @@
   <div class="home">
     <Lunbo />
     <div class="list" v-for="(item, index) in arr" :key="index">
-      <div class="img"><img :src="item.img" alt=""></div>
+      <div class="img" @click="btn(item)"><img :src="item.img" alt=""></div>
       <span class="car">{{item.star}}</span>
       <p class="tit">{{item.rt}}</p>
+      <p class="name">{{item.nm}}</p>
     </div>
   </div>
 </template>
@@ -26,6 +27,12 @@ export default {
       this.$http.get('/api/list').then(res=>{
         console.log(res.data.list)
         this.arr=res.data.list
+      })
+    },
+    btn(item){
+      // console.log(item)
+      this.$router.push({
+        path:`/detail/${item.id}`
       })
     }
   },
@@ -56,13 +63,18 @@ export default {
     .car{
       color: red;
       position: absolute;
-      right: 10px;
+      left: 110px;
       top: 10px;
     }
     .tit{
       position: absolute;
       left: 110px;
-      top: 30px;
+      top: 70px;
+    }
+    .name{
+      position: absolute;
+      left: 110px;
+      top: 40px;
     }
   }  
 </style>
