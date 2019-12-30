@@ -15,7 +15,7 @@ module.exports={
 
       app.get('/api/detail',(req,res)=>{
         let {id}=req.query
-        let dataa=MovieData.MovieList.find(val=>val.id==id)
+        let dataa=MovieData.find(val=>val.id==id)
         res.json({
           adds:dataa,
           errCode:0
